@@ -342,6 +342,8 @@ LogicalResult LLVM::detail::oneToOneRewrite(
     ArrayRef<NamedAttribute> targetAttrs,
     const LLVMTypeConverter &typeConverter, ConversionPatternRewriter &rewriter,
     IntegerOverflowFlags overflowFlags) {
+  llvm::outs() << "oneToOneRewrite\n";
+  op->dump();
   unsigned numResults = op->getNumResults();
 
   SmallVector<Type> resultTypes;
@@ -356,6 +358,7 @@ LogicalResult LLVM::detail::oneToOneRewrite(
   Operation *newOp =
       rewriter.create(op->getLoc(), rewriter.getStringAttr(targetOp), operands,
                       resultTypes, targetAttrs);
+  newOp->dump();
 
   setNativeProperties(newOp, overflowFlags);
 

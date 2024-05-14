@@ -108,6 +108,8 @@ LogicalResult LLVM::detail::vectorOneToOneRewrite(
     ArrayRef<NamedAttribute> targetAttrs,
     const LLVMTypeConverter &typeConverter, ConversionPatternRewriter &rewriter,
     IntegerOverflowFlags overflowFlags) {
+  llvm::outs() << "vectorOneToOneRewrite\n";
+  op->dump();
   assert(!operands.empty());
 
   // Cannot convert ops if their operands are not of LLVM type.
